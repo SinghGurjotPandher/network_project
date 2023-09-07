@@ -1,0 +1,27 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+        <h2>Create a New Post</h2>
+        <form action = "{% url 'add_post' user.username %}" method = "POST">
+            {% csrf_token %}
+            {{form}}
+            <input type = "submit" value = "Post">
+        </form>
+    {% endif %}
+    
+    <div id="post_view">
+    </div>
+
+    <div id = "pagination_buttons"></div>
+    <div id="prev_next"></div>   
+    
+    <input type = "hidden" id="current_user" value = {{user.username}}>
+    
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/posts.js' %}"></script>
+{% endblock %}

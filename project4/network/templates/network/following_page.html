@@ -1,0 +1,15 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div id="title"></div>
+    <div id="following_posts"></div>
+
+    <div id = "pagination_buttons"></div>
+    <div id="prev_next"></div> 
+    <input type = "hidden" id="current_user" value = {{user.username}}>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/following_page.js' %}"></script>
+{% endblock %}

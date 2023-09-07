@@ -1,0 +1,22 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>Profile: {{profile_username}}</h2>
+    <h4>Followers: {{my_followers_len}}</h4>
+    <h4>Following: {{following_len}}</h4>
+    {% if user.is_authenticated %}
+        {% if user.username != profile_username %}
+            <a href = "{% url 'follow' profile_username user.username %}"><button id="follow">Follow</button></a>
+            <a href = "{% url 'unfollow' profile_username user.username %}"><button id="unfollow">Unfollow</button></a>
+        {% endif %}
+    {% endif %}
+    <div id="user_posts"></div>
+    <div id = "pagination_buttons"></div>
+    <div id="prev_next"></div>  
+    <input type = "hidden" id="user_name" value = {{profile_username}}>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/profile.js' %}"></script>
+{% endblock %}
